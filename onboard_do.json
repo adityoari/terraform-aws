@@ -5,7 +5,7 @@
     "label": "my BIG-IP declaration for declarative onboarding",
     "Common": {
         "class": "Tenant",
-        "hostname": "bigip1.example.com",
+        "hostname": "tfaws1.example.com",
         "myDns": {
             "class": "DNS",
             "nameServers": [
@@ -37,6 +37,26 @@
                     "role": "admin"
                 }
             }
-        }
+        },
+		"configsync": {
+            "class": "ConfigSync",
+            "configsyncIp": "{{ SELF_INTERNAL }}"
+        },
+        "failoverAddress": {
+            "class": "FailoverUnicast",
+            "address": "{{ SELF_INTERNAL }}"
+        },
+        "failoverGroup": {
+            "class": "DeviceGroup",
+            "type": "sync-failover",
+            "members": [
+                "tfaws1.example.com"
+            ],
+            "owner": "/Common/failoverGroup/members/0",
+            "autoSync": true,
+            "saveOnAutoSync": false,
+            "networkFailover": true,
+            "fullLoadOnSync": false,
+            "asmSync": false
     }
 }
