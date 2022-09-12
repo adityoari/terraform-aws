@@ -38,7 +38,7 @@
                 }
             }
         },
-		"configsync": {
+	"configsync": {
             "class": "ConfigSync",
             "configsyncIp": "{{ SELF_INTERNAL }}"
         },
